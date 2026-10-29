@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Studio NEMOSHA</title>
+<meta name="description" content="何でもない日々を、未来への手紙にする。北海道で、声と言葉と映像をつくっています。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Zen+Maru+Gothic:wght@500;700&display=swap">
+<style>
+/* 絵本の1冊を縦にめくる構成：朝の森 → ふたりの仲間（2つの仕事）→ 夜（自己紹介）→ 夜明け（連絡先） */
+:root{
+  --paper:#FFF9DF;      /* 絵の背景と同じクリーム */
+  --ink:#3B2A20;        /* くまたんの輪郭の茶色 */
+  --ink-soft:#6B5444;
+  --leaf:#3F6B34;
+  --hood:#AC3232;       /* 赤ずきんの赤 */
+  --night:#010A16;      /* 夜の絵の上端の色 */
+  --moon:#FFF1C9;
+  --moon-soft:#CFC6AE;
+  --font-dot:"DotGothic16","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  --font-body:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Yu Gothic",sans-serif;
+  color-scheme:light;
+}
+body{background:var(--paper);color:var(--ink);font-family:var(--font-body);font-weight:500;line-height:1.9;font-size:16px}
+.book{max-width:800px;margin:0 auto;container-type:inline-size}
+.scene{position:relative;display:block}
+.scene img,.pic{display:block;width:100%;height:auto;image-rendering:pixelated;image-rendering:crisp-edges}
+.gutter{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* 朝の森：空の部分にタイトル */
+.hero-copy{position:absolute;inset:0 0 auto 0;padding-block:5.5cqi 0;text-align:center;display:grid;gap:1.2cqi;justify-items:center}
+.hero-copy .studio{font-family:var(--font-dot);font-size:clamp(13px,2.6cqi,19px);letter-spacing:.18em;color:var(--leaf);margin:0}
+.hero-copy h1{font-family:var(--font-dot);font-weight:400;font-size:clamp(17px,4.6cqi,34px);line-height:1.45;margin:0;text-wrap:balance;color:var(--ink)}
+.hero-copy .lead{font-size:clamp(11px,2.3cqi,16px);margin:0;color:var(--ink-soft)}
+
+/* ふたつの仕事 */
+.works{padding-block:8px 72px;display:grid;gap:56px}
+.works-intro{text-align:center;margin:0;font-family:var(--font-dot);font-size:clamp(15px,3cqi,20px);letter-spacing:.06em;color:var(--ink-soft)}
+.pillar{display:grid;gap:12px;justify-items:center;text-align:center}
+.pillar .pic{width:min(72%,290px)}
+.pillar-text{min-width:0;max-width:30em}
+.pillar h2{font-family:var(--font-dot);font-weight:400;font-size:clamp(22px,4.4cqi,30px);margin:0 0 4px;letter-spacing:.08em}
+.pillar .who{font-size:13px;color:var(--ink-soft);margin:0 0 10px;letter-spacing:.04em}
+.pillar p{margin:0 0 12px}
+.wolf h2{color:#4C5568}
+.bear h2{color:#6A3E22}
+.list{list-style:none;padding:0;margin:8px 0 0;display:grid;gap:8px;text-align:left}
+.list li{padding-left:1.3em;position:relative}
+.list li::before{content:"";position:absolute;left:0;top:.72em;width:7px;height:7px;background:var(--hood)}
+.list small{color:var(--ink-soft)}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px;justify-content:center}
+.links a,.links span{font-family:var(--font-dot);font-size:14px;padding:7px 14px;border:2px solid var(--ink);color:var(--ink);text-decoration:none;background:var(--paper);box-shadow:3px 3px 0 var(--ink)}
+.links a:hover{background:#F4E9BE}
+.links a:focus-visible{outline:3px solid var(--hood);outline-offset:3px}
+.links span{opacity:.55;box-shadow:none;border-style:dashed}
+@container (min-width:600px){
+  .pillar{grid-template-columns:290px 1fr;text-align:left;justify-items:start;align-items:center;gap:28px}
+  .pillar .pic{width:100%}
+  .pillar.bear{grid-template-columns:1fr 290px}
+  .pillar.bear .pic{order:2}
+  .links{justify-content:flex-start}
+}
+
+/* 夜：自己紹介 */
+.about{background:var(--night);color:var(--moon);padding-block:48px 56px}
+.about-inner{max-width:30em;margin:0 auto}
+.about h2{font-family:var(--font-dot);font-weight:400;font-size:clamp(18px,3.6cqi,24px);margin:0 0 18px;letter-spacing:.1em;color:var(--moon)}
+.about p{margin:0;line-height:2.1;font-size:clamp(15px,2.4cqi,17px)}
+
+/* 夜明け：連絡先 */
+.contact-copy{position:absolute;inset:0 0 auto 0;padding-block:6cqi 0;text-align:center;color:var(--moon)}
+.contact-copy h2{font-family:var(--font-dot);font-weight:400;font-size:clamp(16px,3.6cqi,24px);margin:0 0 1.5cqi;letter-spacing:.08em}
+.contact-copy p{margin:0;font-size:clamp(12px,2.3cqi,15px);color:var(--moon-soft)}
+footer{background:#FED4C6;color:var(--ink);text-align:center;font-family:var(--font-dot);font-size:12px;letter-spacing:.12em;padding-block:14px 22px}
+@media (prefers-reduced-motion:no-preference){
+  .links a{transition:transform .15s,box-shadow .15s}
+  .links a:hover{transform:translate(1px,1px);box-shadow:2px 2px 0 var(--ink)}
+}
+</style>
+</head>
+<body>
+<div class="book">
+
+  <header class="scene">
+    <img src="images/scene-morning.png" width="640" height="476" alt="朝の森で、赤ずきんが手紙を読んでいる">
+    <div class="hero-copy gutter">
+      <p class="studio">Studio NEMOSHA</p>
+      <h1>何でもない日々を、<br>未来への手紙にする。</h1>
+      <p class="lead">北海道で、声と言葉と映像をつくっています。</p>
+    </div>
+  </header>
+
+  <div class="scene">
+    <img src="images/scene-friends.png" width="640" height="304" alt="くまたんとオオカミが並んで立っている">
+  </div>
+
+  <main>
+    <section class="works gutter" aria-label="ふたつの仕事">
+      <p class="works-intro">森には、ふたりの仲間がいます。</p>
+
+      <article class="pillar wolf">
+        <img class="pic" src="images/wolf-howl.png" width="313" height="313" alt="オオカミが月に向かって遠吠えをしている">
+        <div class="pillar-text">
+          <h2>ことばと声</h2>
+          <p class="who">マダムおだ姉</p>
+          <p>大勢に向けてではなく、あなたひとりに話しかけるように。日常をちょっと大きな目で眺める「やさしい見方」を、マダムおだ姉として届けています。</p>
+          <div class="links">
+            <a href="https://stand.fm/channels/698523244144beda36952dbb" target="_blank" rel="noopener">ポッドキャスト</a>
+            <a href="https://note.com/nemosha" target="_blank" rel="noopener">note</a>
+            <!-- YouTubeのURLが決まったら、下の span を <a href="URL" target="_blank" rel="noopener">YouTube</a> に差し替え -->
+            <span>YouTube</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="pillar bear">
+        <img class="pic" src="images/bear-camera.png" width="313" height="313" alt="くまたんがお花畑でカメラを構えている">
+        <div class="pillar-text">
+          <h2>つくる</h2>
+          <p class="who">映像・ドット絵の制作</p>
+          <p>手ざわりのあるものを、ひとつずつ。映像やドット絵の制作をしています。</p>
+          <ul class="list">
+            <li>企業の記念映像の制作 <small>（創立100周年／内容は非公開）</small></li>
+            <li>Vtuber動画の企画・制作 <small>（自主・依頼あわせて100本以上）</small></li>
+            <li>自主制作「ちいさな森のおとぎ話」 <small>（ドット絵アニメ）</small></li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <div class="scene">
+      <img src="images/scene-night.png" width="640" height="390" alt="夜、赤ずきんがランタンを持って星空を見上げている">
+    </div>
+
+    <section class="about gutter" aria-labelledby="about-title">
+      <div class="about-inner">
+        <h2 id="about-title">NEMOSHAのこと</h2>
+        <p>転勤で、いろんな土地に移り暮らしてきました。<br>
+        子どもの頃は、学校に行けない時期もありました。<br>
+        場所が変わっても、灯りを持って、自分の根っこを探しています。<br>
+        その途中で見つけた思いを、言葉と声、映像で、カタチにしているのがNEMOSHAです。</p>
+      </div>
+    </section>
+
+    <section class="scene" aria-labelledby="contact-title">
+      <img src="images/scene-dawn.png" width="640" height="540" alt="夜明けの道を、オオカミと赤ずきんとくまたんが歩いていく後ろ姿">
+      <div class="contact-copy gutter">
+        <h2 id="contact-title">ご依頼・ご相談</h2>
+        <!-- 窓口ができたら、ここをフォームへのリンクに差し替え -->
+        <p>お問い合わせの窓口は、ただいま準備中です。</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="gutter">© Studio NEMOSHA</footer>
+</div>
+</body>
+</html>
