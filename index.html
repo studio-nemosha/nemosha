@@ -78,6 +78,68 @@ footer{background:#FED4C6;color:var(--ink);text-align:center;font-family:var(--f
   .links a{transition:transform .15s,box-shadow .15s}
   .links a:hover{transform:translate(1px,1px);box-shadow:2px 2px 0 var(--ink)}
 }
+
+/* ===== ロゴの夜の森の色を、無地だった2か所に足す ===== */
+:root{--indigo:#0B1B44;--firefly:#E9F59A;--sprout:#B9DC7A}
+
+/* 昼の森（ふたつの仕事）：1ピクセル＝1日のドット方眼と、舞う光の粒 */
+.works{position:relative;isolation:isolate;overflow:hidden}
+.works::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 40% at 25% 30%,rgba(201,226,142,.28),transparent 70%),
+    radial-gradient(ellipse 55% 35% at 80% 75%,rgba(242,216,107,.20),transparent 70%),
+    radial-gradient(circle at 2px 2px,rgba(63,107,52,.22) 1.2px,transparent 1.8px) 0 0/22px 22px;
+  -webkit-mask:linear-gradient(transparent,#000 10%,#000 90%,transparent);
+          mask:linear-gradient(transparent,#000 10%,#000 90%,transparent)}
+.works::after{content:"";position:absolute;z-index:-1;pointer-events:none;left:0;top:0;width:4px;height:4px;
+  background:transparent;color:var(--sprout);
+  box-shadow:
+    60px 60px 0 #C9E28E, 740px 140px 0 #F2D86B, 40px 420px 0 #C9E28E,
+    700px 330px 0 #F2D86B, 620px 560px 0 #C9E28E, 30px 700px 0 #F2D86B,
+    520px 40px 0 #C9E28E, 760px 760px 0 #C9E28E, 300px 860px 0 #F2D86B}
+
+/* 夜（自己紹介）：上下は絵とつながる色のまま、真ん中だけロゴの藍色へ。星と蛍を散らす */
+.about{position:relative;overflow:hidden;isolation:isolate;
+  background:linear-gradient(var(--night) 0%,var(--indigo) 45%,var(--indigo) 60%,var(--night) 100%)}
+.about::before,.about::after{content:"";position:absolute;left:0;top:0;width:3px;height:3px;z-index:-1;pointer-events:none}
+.about::before{ /* 星 */
+  background:transparent;
+  box-shadow:
+    40px 30px var(--moon), 130px 90px var(--moon-soft), 260px 24px var(--moon), 450px 120px var(--moon-soft),
+    520px 18px var(--moon), 610px 96px var(--moon-soft), 730px 40px var(--moon), 770px 150px var(--moon-soft),
+    20px 180px var(--moon-soft), 700px 260px var(--moon), 60px 330px var(--moon), 760px 380px var(--moon-soft),
+    180px 410px var(--moon-soft), 640px 430px var(--moon-soft)}
+.about::after{ /* 蛍 */
+  width:5px;height:5px;background:transparent;
+  box-shadow:
+    90px 260px var(--firefly), 90px 260px 10px 2px rgba(233,245,154,.45),
+    690px 200px var(--firefly), 690px 200px 10px 2px rgba(233,245,154,.45),
+    560px 380px var(--firefly), 560px 380px 10px 2px rgba(233,245,154,.45),
+    210px 360px var(--firefly), 210px 360px 10px 2px rgba(233,245,154,.45)}
+@media (prefers-reduced-motion:no-preference){
+  .about::after{animation:firefly 4.5s ease-in-out infinite}
+  @keyframes firefly{0%,100%{opacity:.35}50%{opacity:1}}
+}
+
+/* 「森には、ふたりの仲間がいます。」を種もんのセリフにする */
+.works-intro{display:flex;align-items:center;justify-content:center;gap:14px;margin:8px 0 0}
+.works-intro .seed{width:56px;height:56px;flex:none;image-rendering:pixelated}
+.works-intro .bubble{position:relative;margin:0;padding:12px 20px;
+  font-family:var(--font-dot);font-size:clamp(15px,3.2cqi,21px);letter-spacing:.06em;color:var(--leaf);
+  background:#EEF6D0;
+  box-shadow:0 -3px 0 0 var(--leaf),0 3px 0 0 var(--leaf),-3px 0 0 0 var(--leaf),3px 0 0 0 var(--leaf),5px 6px 0 0 rgba(63,107,52,.18)}
+.works-intro .bubble::before{content:"";position:absolute;left:-12px;top:50%;width:10px;height:14px;margin-top:-7px;background:var(--leaf);clip-path:polygon(100% 0,100% 100%,0 50%)}
+@media (prefers-reduced-motion:no-preference){
+  .works-intro .seed{animation:bob 2.8s steps(2,end) infinite}
+  @keyframes bob{50%{transform:translateY(-3px)}}
+}
+@container (max-width:420px){.works-intro .seed{width:44px;height:44px}.works-intro .bubble{padding:10px 14px}}
+
+/* 名前の横に小さなアイコン */
+.who-icon{display:flex;align-items:center;gap:10px}
+.who-icon img{width:44px;height:44px;border-radius:50%;flex:none;box-shadow:0 0 0 2px var(--paper),0 0 0 4px #4C5568}
+.pillar.wolf .who-icon{justify-content:center}
+@container (min-width:600px){.pillar.wolf .who-icon{justify-content:flex-start}}
 </style>
 </head>
 <body>
@@ -98,13 +160,16 @@ footer{background:#FED4C6;color:var(--ink);text-align:center;font-family:var(--f
 
   <main>
     <section class="works gutter" aria-label="ふたつの仕事">
-      <p class="works-intro">森には、ふたりの仲間がいます。</p>
+      <div class="works-intro">
+        <img class="seed" src="images/tanemon.png" width="16" height="16" alt="">
+        <p class="bubble">森には、ふたりの仲間がいます。</p>
+      </div>
 
       <article class="pillar wolf">
         <img class="pic" src="images/wolf-howl.png" width="313" height="313" alt="オオカミが月に向かって遠吠えをしている">
         <div class="pillar-text">
           <h2>ことばと声</h2>
-          <p class="who">マダムおだ姉</p>
+          <p class="who who-icon"><img src="images/madam-icon.png" width="80" height="80" alt="">マダムおだ姉</p>
           <p>大勢に向けてではなく、あなたひとりに話しかけるように。日常をちょっと大きな目で眺める「やさしい見方」を、マダムおだ姉として届けています。</p>
           <div class="links">
             <a href="https://stand.fm/channels/698523244144beda36952dbb" target="_blank" rel="noopener">ポッドキャスト</a>
