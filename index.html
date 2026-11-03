@@ -138,8 +138,9 @@ footer{background:#FED4C6;color:var(--ink);text-align:center;font-family:var(--f
 /* 名前の横に小さなアイコン */
 .who-icon{display:flex;align-items:center;gap:10px}
 .who-icon img{width:44px;height:44px;border-radius:50%;flex:none;box-shadow:0 0 0 2px var(--paper),0 0 0 4px #4C5568}
-.pillar.wolf .who-icon{justify-content:center}
-@container (min-width:600px){.pillar.wolf .who-icon{justify-content:flex-start}}
+.pillar .who-icon{justify-content:center}
+@container (min-width:600px){.pillar .who-icon{justify-content:flex-start}}
+.pillar.bear .who-icon img{box-shadow:0 0 0 2px var(--paper),0 0 0 4px #6A3E22}
 
 /* 仲間の名前の見出しと副題 */
 .pillar h2{letter-spacing:.04em}
