@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Studio NEMOSHA</title>
-<meta name="description" content="何でもない日々を、未来への手紙にする。北海道で、声と言葉と映像をつくっています。">
+<meta name="description" content="何でもない日々を、未来への手紙にする。いつか誰かが道に迷ったとき、優しさを受け取れるように。北海道で、声と言葉と映像をつくっています。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Zen+Maru+Gothic:wght@500;700&display=swap">
@@ -155,6 +155,13 @@ footer{background:#FED4C6;color:var(--ink);text-align:center;font-family:var(--f
 .scene .works-intro .bubble::before{left:14px;top:auto;bottom:-11px;margin:0;width:14px;height:11px;clip-path:polygon(0 0,100% 0,0 100%)}
 @container (max-width:420px){.scene .works-intro .bubble{padding:8px 10px;letter-spacing:.02em}}
 .scene .works-intro .bubble{white-space:nowrap}
+
+/* 湖の下の見出し：キャッチコピーより一回り小さく */
+.what{margin:0;padding-block:28px 8px;text-align:center;font-family:var(--font-dot);font-weight:400;
+  font-size:clamp(15px,3.4cqi,24px);line-height:1.6;letter-spacing:.06em;color:var(--ink)}
+.what .sp{display:none}
+@container (max-width:480px){.what .sp{display:inline}}
+.hero-copy .lead{text-wrap:balance}
 </style>
 </head>
 <body>
@@ -165,15 +172,17 @@ footer{background:#FED4C6;color:var(--ink);text-align:center;font-family:var(--f
     <div class="hero-copy gutter">
       <p class="studio">Studio NEMOSHA</p>
       <h1>何でもない日々を、<br>未来への手紙にする。</h1>
-      <p class="lead">北海道で、声と言葉と映像をつくっています。</p>
+      <p class="lead">いつか誰かが道に迷ったとき、優しさを受け取れるように。</p>
     </div>
   </header>
+
+  <h2 class="what gutter">北海道で、<br class="sp">声と言葉と映像をつくっています。</h2>
 
   <div class="scene">
     <img src="images/scene-friends.png" width="640" height="304" alt="くまたんとオオカミが並んで立っている">
     <div class="works-intro">
         <img class="seed" src="images/tanemon.png" width="16" height="16" alt="">
-        <p class="bubble">森には、ふたりの<br>仲間がいます。</p>
+        <p class="bubble">ようこそ、<br>ねもしゃの森へ！</p>
       </div>
   </div>
 
