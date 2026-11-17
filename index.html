@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Studio NEMOSHA</title>
 <meta name="description" content="何でもない日々を、未来への手紙にする。いつか誰かが道に迷ったとき、優しさを受け取れるように。北海道で、声と言葉と映像をつくっています。">
+<link rel="icon" type="image/png" href="images/tanemon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Studio NEMOSHA">
+<meta property="og:description" content="何でもない日々を、未来への手紙にする。いつか誰かが道に迷ったとき、優しさを受け取れるように。">
+<meta name="twitter:card" content="summary_large_image">
+<!-- 公開先のURLが決まったら、下の1行のコメントを外して https://〜 から始まるURLに書き換え -->
+<!-- <meta property="og:image" content="https://（サイトのURL）/images/scene-morning.png"> -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Zen+Maru+Gothic:wght@500;700&display=swap">
@@ -162,6 +169,93 @@ footer{background:#FED4C6;color:var(--ink);text-align:center;font-family:var(--f
 .what .sp{display:none}
 @container (max-width:480px){.what .sp{display:inline}}
 .hero-copy .lead{text-wrap:balance}
+
+/* =====================================================
+   ブラッシュアップ ①〜⑧（番号ごとに消せば元に戻せます）
+   ===================================================== */
+:root{--dot:max(2px,calc(100cqi/320))} /* 絵の1ドットぶんの大きさ */
+img.seedpx{image-rendering:pixelated}
+
+/* ① ヒーローの文字を絵から離す：色を茶に、うしろにクリーム色のにじみ */
+.hero-copy .studio{color:#6A3E22;letter-spacing:.14em}
+.hero-copy .studio,.hero-copy h1,.hero-copy .lead{text-shadow:0 0 2px var(--paper),0 0 5px var(--paper),0 0 9px var(--paper),0 0 14px var(--paper)}
+.hero-copy .lead{font-size:clamp(13px,2.3cqi,16px);line-height:1.6;color:var(--ink)}
+
+/* ② 夜の星と蛍：％で置いて、文章の上下と左右のふちへ逃がす */
+.about{padding-block:64px 72px}
+.about::before,.about::after{inset:0;width:auto;height:auto;box-shadow:none}
+.about::before{background:
+  linear-gradient(var(--moon),var(--moon)) left 6% top 18px/3px 3px no-repeat,
+  linear-gradient(var(--moon-soft),var(--moon-soft)) left 23% top 38px/3px 3px no-repeat,
+  linear-gradient(var(--moon),var(--moon)) left 42% top 14px/3px 3px no-repeat,
+  linear-gradient(var(--moon-soft),var(--moon-soft)) left 64% top 32px/3px 3px no-repeat,
+  linear-gradient(var(--moon),var(--moon)) left 81% top 12px/3px 3px no-repeat,
+  linear-gradient(var(--moon-soft),var(--moon-soft)) left 95% top 36px/3px 3px no-repeat,
+  linear-gradient(var(--moon-soft),var(--moon-soft)) left 9% bottom 24px/3px 3px no-repeat,
+  linear-gradient(var(--moon),var(--moon)) left 35% bottom 44px/3px 3px no-repeat,
+  linear-gradient(var(--moon-soft),var(--moon-soft)) left 59% bottom 16px/3px 3px no-repeat,
+  linear-gradient(var(--moon),var(--moon)) left 90% bottom 34px/3px 3px no-repeat}
+.about{--ff:radial-gradient(circle,var(--firefly) 0 2.5px,rgba(233,245,154,.4) 3px,transparent 8px)}
+.about::after{background:
+  var(--ff) right 13% top 24px/16px 16px no-repeat,
+  var(--ff) left 20% bottom 22px/16px 16px no-repeat}
+@container (min-width:700px){
+  .about::after{background:
+    var(--ff) right 13% top 24px/16px 16px no-repeat,
+    var(--ff) left 20% bottom 22px/16px 16px no-repeat,
+    var(--ff) left 7% top 44%/16px 16px no-repeat,
+    var(--ff) right 8% top 62%/16px 16px no-repeat}
+}
+
+/* ③ 説明文は左揃え（見出しと副題は中央のまま）。補足は次の行へ */
+.pillar .body{text-align:left}
+.list small{display:block;line-height:1.6;margin-top:2px}
+
+/* ④ ボタンと小さな文字を一回り大きく */
+.links a,.links span{font-size:15px;min-height:44px;padding:8px 12px;display:inline-flex;align-items:center}
+.pillar .who{font-size:14px}
+.contact-copy p{font-size:clamp(14px,2.3cqi,16px);color:var(--moon)}
+
+/* ⑤ 絵が縮小される幅ではなめらかに、拡大される幅ではドットをくっきり */
+.scene>img,.pic img{image-rendering:auto}
+.pic img{display:block;width:100%;height:auto}
+@container (min-width:640px){.scene>img{image-rendering:crisp-edges;image-rendering:pixelated}}
+
+/* ⑦ 小さな動き：音符・蝶・星のまたたき */
+.pic{position:relative}
+.note,.twinkle,.bfly{position:absolute;pointer-events:none}
+.note{font-family:var(--font-dot);font-size:clamp(14px,3.4cqi,20px);line-height:1;opacity:0}
+.note.n1{left:66%;top:20%;color:#E0A21C}
+.note.n2{left:56%;top:27%;color:#D9453A}
+.twinkle{font-size:var(--dot);width:1em;height:1em;background:#F7E26B;
+  box-shadow:1em 0 #F7E26B,-1em 0 #F7E26B,0 1em #F7E26B,0 -1em #F7E26B}
+.bfly{font-size:var(--dot);width:5em;height:4em}
+.bfly i{position:absolute;left:0;top:0;width:1em;height:1em;background:#F2A23A;transform-origin:2.5em 2em;
+  box-shadow:4em 0 #F2A23A,
+    0 1em #F2A23A,1em 1em #F7D774,2em 1em #6A3E22,3em 1em #F7D774,4em 1em #F2A23A,
+    0 2em #F2A23A,1em 2em #F2A23A,2em 2em #6A3E22,3em 2em #F2A23A,4em 2em #F2A23A,
+    1em 3em #F2A23A,3em 3em #F2A23A}
+@media (prefers-reduced-motion:no-preference){
+  .note{animation:note 2.8s steps(6,end) infinite}
+  .note.n2{animation-delay:1.4s}
+  @keyframes note{0%{opacity:0;transform:translate(0,0)}15%,75%{opacity:1}100%{opacity:0;transform:translate(.5em,-1.8em)}}
+  .twinkle{animation:twinkle 2.4s steps(2,jump-none) infinite}
+  .twinkle.t2{animation-delay:.8s}.twinkle.t3{animation-delay:1.6s}
+  @keyframes twinkle{0%,100%{opacity:.2;transform:scale(.5)}50%{opacity:1;transform:scale(1)}}
+  .bfly{animation:flit 9s steps(24,end) infinite}
+  .bfly i{animation:flap .5s steps(1,end) infinite}
+  @keyframes flit{0%,100%{transform:translate(0,0)}25%{transform:translate(5em,-5em)}50%{transform:translate(11em,-1em)}75%{transform:translate(6em,3em)}}
+  @keyframes flap{50%{transform:scaleX(.45)}}
+}
+
+/* ⑧ 種もんの再登場：フッターの「またね」 */
+.bye{display:flex;align-items:center;justify-content:center;gap:8px;margin:0 0 6px;font-size:14px;letter-spacing:.08em}
+.bye img{width:28px;height:28px}
+@media (prefers-reduced-motion:no-preference){.bye img{animation:bob 2.8s steps(2,end) infinite}}
+
+/* ⑨ 夜明けの絵の左下：絵本のおしまいの一文 */
+.closing{position:absolute;left:max(16px,4cqi);bottom:9cqi;margin:0;text-align:left;
+  font-family:var(--font-dot);font-size:clamp(11.5px,3cqi,17px);line-height:1.8;color:var(--ink)}
 </style>
 </head>
 <body>
@@ -184,18 +278,22 @@ footer{background:#FED4C6;color:var(--ink);text-align:center;font-family:var(--f
         <img class="seed" src="images/tanemon.png" width="16" height="16" alt="">
         <p class="bubble">ようこそ、<br>ねもしゃの森へ！</p>
       </div>
+    <span class="bfly" style="left:27%;top:78%" aria-hidden="true"><i></i></span>
   </div>
 
   <main>
     <section class="works gutter" aria-label="ふたつの仕事">
 
       <article class="pillar wolf">
-        <img class="pic" src="images/wolf-howl.png" width="313" height="313" alt="オオカミが月に向かって遠吠えをしている">
+        <div class="pic">
+          <img src="images/wolf-howl.png" width="313" height="313" alt="オオカミが月に向かって遠吠えをしている">
+          <span class="twinkle" style="left:57%;top:13%" aria-hidden="true"></span>
+        </div>
         <div class="pillar-text">
           <h2>オオカミさんの遠吠え</h2>
           <p class="sub">ことばと声を、遠くのあなたへ</p>
           <p class="who who-icon"><img src="images/madam-icon.png" width="80" height="80" alt="">声の主：マダムおだ姉</p>
-          <p>大勢に向けてではなく、あなたひとりに話しかけるように。日常をちょっと大きな目で眺める「やさしい見方」を、マダムおだ姉として届けています。</p>
+          <p class="body">大勢に向けてではなく、あなたひとりに話しかけるように。日常をちょっと大きな目で眺める「やさしい見方」を、マダムおだ姉として届けています。</p>
           <div class="links">
             <a href="https://stand.fm/channels/698523244144beda36952dbb" target="_blank" rel="noopener">ポッドキャスト</a>
             <a href="https://note.com/nemosha" target="_blank" rel="noopener">note</a>
@@ -205,12 +303,15 @@ footer{background:#FED4C6;color:var(--ink);text-align:center;font-family:var(--f
       </article>
 
       <article class="pillar bear">
-        <img class="pic" src="images/bear-camera.png" width="313" height="313" alt="くまたんがお花畑でカメラを構えている">
+        <div class="pic">
+          <img src="images/bear-camera.png" width="313" height="313" alt="くまたんがお花畑でカメラを構えている">
+          <span class="note n1" aria-hidden="true">♪</span><span class="note n2" aria-hidden="true">♪</span>
+        </div>
         <div class="pillar-text">
           <h2>くまたんのカメラ</h2>
           <p class="sub">感じたことを、かたちにする</p>
 <p class="who who-icon"><img src="images/danemon-icon.png" width="80" height="80" alt="">作り手：だねもん</p>
-          <p>企画、構成、動画制作、SNS。手ざわりのあるものを、ひとつずつ。映像やドット絵の制作を自分で企画して、自分でつくっています。</p>
+          <p class="body">企画、構成、動画制作、SNS。手ざわりのあるものを、ひとつずつ。映像やドット絵の制作を自分で企画して、自分でつくっています。</p>
           <ul class="list">
             <li>企業の記念映像の制作 <small>（創立100周年／内容は非公開）</small></li>
             <li>Vtuber動画の企画・制作 <small>（自主・依頼あわせて100本以上／一部は非公開）</small></li>
@@ -221,11 +322,19 @@ footer{background:#FED4C6;color:var(--ink);text-align:center;font-family:var(--f
             <a href="https://youtube.com/playlist?list=PLJQPqnkpHVeKZPY5TMnJTF8C4OSHztpuU&si=HhVBcDSWT5vlPOXH" target="_blank" rel="noopener">ちいさな森のおとぎ話</a>
             <a href="mori.html">おとぎの森を散歩する（試作版）</a>
           </div>
+        </div>
       </article>
     </section>
 
+    <div class="scene" aria-hidden="true">
+      <img src="images/scene-dusk.png" width="640" height="252" alt="">
+    </div>
+
     <div class="scene">
       <img src="images/scene-night.png" width="640" height="390" alt="夜、赤ずきんがランタンを持って星空を見上げている">
+      <span class="twinkle" style="left:33%;top:22%" aria-hidden="true"></span>
+      <span class="twinkle t2" style="left:60%;top:56%" aria-hidden="true"></span>
+      <span class="twinkle t3" style="left:86%;top:26%" aria-hidden="true"></span>
     </div>
 
     <section class="about gutter" aria-labelledby="about-title">
@@ -245,10 +354,14 @@ footer{background:#FED4C6;color:var(--ink);text-align:center;font-family:var(--f
       <p>お仕事のご依頼・ご相談は、こちらからどうぞ。</p>
 <div class="links" style="justify-content:center"><a href="https://forms.gle/VfijVmJUsakjsdw19" target="_blank" rel="noopener">お問い合わせフォーム</a></div>
       </div>
+      <p class="closing">あなたの<br>何でもない日々が、<br>ささやかな幸せで<br>満ち溢れていますように</p>
     </section>
   </main>
 
-  <footer class="gutter">© Studio NEMOSHA</footer>
+  <footer class="gutter">
+    <p class="bye"><img class="seedpx" src="images/tanemon.png" width="16" height="16" alt="">またね。いつでも待ってるよ！</p>
+    © Studio NEMOSHA
+  </footer>
 </div>
 </body>
 </html>
