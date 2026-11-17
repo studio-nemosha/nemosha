@@ -267,6 +267,18 @@ img.seedpx{image-rendering:pixelated}
 .lake span{position:relative;isolation:isolate;color:var(--ink)}
 .lake span::before{content:"";position:absolute;z-index:-1;inset:-.75em -3.6em;pointer-events:none;
  background:radial-gradient(closest-side,rgba(255,249,223,.95) 0%,rgba(255,249,223,.93) 84%,rgba(255,249,223,.55) 93%,rgba(255,249,223,0) 100%)}
+
+/* ⑪ 湖の見出しの動き：先に朝もやが広がり、文字が水の中からにじむように浮かび上がる（ページを開いたとき1回だけ） */
+.lake .words{display:inline-block}
+@media (prefers-reduced-motion:no-preference){
+  .lake span::before{animation:lake-mist 3.2s cubic-bezier(.22,.65,.3,1) .55s both}
+  .lake .words{animation:lake-rise 3.5s cubic-bezier(.22,.65,.3,1) 1.45s both}
+  @keyframes lake-mist{0%{opacity:0;transform:scale(.55,.35)}100%{opacity:1;transform:none}}
+  @keyframes lake-rise{
+    0%{opacity:0;filter:blur(8px);transform:translateY(.6em) scaleY(.85)}
+    55%{opacity:.75;filter:blur(2px)}
+    100%{opacity:1;filter:none;transform:none}}
+}
 </style>
 </head>
 <body>
@@ -279,7 +291,7 @@ img.seedpx{image-rendering:pixelated}
       <h1>何でもない日々を、<br>未来への手紙にする。</h1>
       <p class="lead">いつか誰かが道に迷ったとき、優しさを受け取れるように。</p>
     </div>
-    <h2 class="lake gutter"><span>北海道で、<br class="sp">声と言葉と映像をつくっています。</span></h2>
+    <h2 class="lake gutter"><span><span class="words">北海道で、<br class="sp">声と言葉と映像をつくっています。</span></span></h2>
   </header>
 
 
